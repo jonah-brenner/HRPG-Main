@@ -14,7 +14,7 @@ set(CMAKE_CXX_STANDARD 17)
 # Initialize the SDK
 pico_sdk_init()
 
-add_executable(pong_table
+add_executable(mcp3008_serial
     mcp3008_serial.c
 )
 
