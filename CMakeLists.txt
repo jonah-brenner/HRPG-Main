@@ -19,11 +19,12 @@ add_executable(mcp3008_serial
 )
 
 pico_set_program_name(mcp3008_serial "mcp3008_serial")
-pico_set_program_version(pmcp3008_serial "0.1")
+pico_set_program_version(mcp3008_serial "0.1")
 
 # Add the necessary libraries to the build
 target_link_libraries(mcp3008_serial
     pico_stdlib
+    hardware_spi
 )
 
 # enable usb output, disable uart output

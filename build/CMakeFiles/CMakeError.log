@@ -10,27 +10,8 @@ The output was:
 collect2: error: ld returned 1 exit status
 
 
-Determining if the C compiler works failed with the following output:
-Change Dir: /home/ben/Desktop/HRPG/HRPG-Main/HRPG-Main/build/CMakeFiles/CMakeTmp
-
-Run Build Command(s):/usr/bin/make cmTC_fb861/fast && /usr/bin/make -f CMakeFiles/cmTC_fb861.dir/build.make CMakeFiles/cmTC_fb861.dir/build
-make[1]: Entering directory '/home/ben/Desktop/HRPG/HRPG-Main/HRPG-Main/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_fb861.dir/testCCompiler.c.o
-/bin/arm-none-eabi-gcc-9.2.1    -o CMakeFiles/cmTC_fb861.dir/testCCompiler.c.o   -c /home/ben/Desktop/HRPG/HRPG-Main/HRPG-Main/build/CMakeFiles/CMakeTmp/testCCompiler.c
-Linking C executable cmTC_fb861
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_fb861.dir/link.txt --verbose=1
-/bin/arm-none-eabi-gcc-9.2.1      CMakeFiles/cmTC_fb861.dir/testCCompiler.c.o  -o cmTC_fb861 
-/usr/lib/gcc/arm-none-eabi/9.2.1/../../../arm-none-eabi/bin/ld: /usr/lib/gcc/arm-none-eabi/9.2.1/../../../arm-none-eabi/lib/libc.a(lib_a-exit.o): in function `exit':
-/build/newlib-CVVEyx/newlib-3.3.0/build/arm-none-eabi/newlib/libc/stdlib/../../../../../newlib/libc/stdlib/exit.c:64: undefined reference to `_exit'
-collect2: error: ld returned 1 exit status
-make[1]: *** [CMakeFiles/cmTC_fb861.dir/build.make:87: cmTC_fb861] Error 1
-make[1]: Leaving directory '/home/ben/Desktop/HRPG/HRPG-Main/HRPG-Main/build/CMakeFiles/CMakeTmp'
-make: *** [Makefile:121: cmTC_fb861/fast] Error 2
-
-
-
-Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
-Compiler: /bin/arm-none-eabi-gcc-9.2.1 
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+Compiler: /usr/bin/arm-none-eabi-g++ 
 Build flags: 
 Id flags:  
 
@@ -39,86 +20,5 @@ The output was:
 /usr/lib/gcc/arm-none-eabi/9.2.1/../../../arm-none-eabi/bin/ld: /usr/lib/gcc/arm-none-eabi/9.2.1/../../../arm-none-eabi/lib/libc.a(lib_a-exit.o): in function `exit':
 /build/newlib-CVVEyx/newlib-3.3.0/build/arm-none-eabi/newlib/libc/stdlib/../../../../../newlib/libc/stdlib/exit.c:64: undefined reference to `_exit'
 collect2: error: ld returned 1 exit status
-
-
-Determining if the C compiler works failed with the following output:
-Change Dir: /home/ben/Desktop/HRPG/HRPG-Main/HRPG-Main/build/CMakeFiles/CMakeTmp
-
-Run Build Command(s):/usr/bin/make cmTC_0a888/fast && /usr/bin/make -f CMakeFiles/cmTC_0a888.dir/build.make CMakeFiles/cmTC_0a888.dir/build
-make[1]: Entering directory '/home/ben/Desktop/HRPG/HRPG-Main/HRPG-Main/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_0a888.dir/testCCompiler.c.o
-/bin/arm-none-eabi-gcc-9.2.1    -o CMakeFiles/cmTC_0a888.dir/testCCompiler.c.o   -c /home/ben/Desktop/HRPG/HRPG-Main/HRPG-Main/build/CMakeFiles/CMakeTmp/testCCompiler.c
-Linking C executable cmTC_0a888
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0a888.dir/link.txt --verbose=1
-/bin/arm-none-eabi-gcc-9.2.1      CMakeFiles/cmTC_0a888.dir/testCCompiler.c.o  -o cmTC_0a888 
-/usr/lib/gcc/arm-none-eabi/9.2.1/../../../arm-none-eabi/bin/ld: /usr/lib/gcc/arm-none-eabi/9.2.1/../../../arm-none-eabi/lib/libc.a(lib_a-exit.o): in function `exit':
-/build/newlib-CVVEyx/newlib-3.3.0/build/arm-none-eabi/newlib/libc/stdlib/../../../../../newlib/libc/stdlib/exit.c:64: undefined reference to `_exit'
-collect2: error: ld returned 1 exit status
-make[1]: *** [CMakeFiles/cmTC_0a888.dir/build.make:87: cmTC_0a888] Error 1
-make[1]: Leaving directory '/home/ben/Desktop/HRPG/HRPG-Main/HRPG-Main/build/CMakeFiles/CMakeTmp'
-make: *** [Makefile:121: cmTC_0a888/fast] Error 2
-
-
-
-Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
-Compiler: /bin/arm-none-eabi-gcc-9.2.1 
-Build flags: 
-Id flags:  
-
-The output was:
-1
-/usr/lib/gcc/arm-none-eabi/9.2.1/../../../arm-none-eabi/bin/ld: /usr/lib/gcc/arm-none-eabi/9.2.1/../../../arm-none-eabi/lib/libc.a(lib_a-exit.o): in function `exit':
-/build/newlib-CVVEyx/newlib-3.3.0/build/arm-none-eabi/newlib/libc/stdlib/../../../../../newlib/libc/stdlib/exit.c:64: undefined reference to `_exit'
-collect2: error: ld returned 1 exit status
-
-
-Determining if the C compiler works failed with the following output:
-Change Dir: /home/ben/Desktop/HRPG/HRPG-Main/HRPG-Main/build/CMakeFiles/CMakeTmp
-
-Run Build Command(s):/usr/bin/make cmTC_1742c/fast && /usr/bin/make -f CMakeFiles/cmTC_1742c.dir/build.make CMakeFiles/cmTC_1742c.dir/build
-make[1]: Entering directory '/home/ben/Desktop/HRPG/HRPG-Main/HRPG-Main/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_1742c.dir/testCCompiler.c.o
-/bin/arm-none-eabi-gcc-9.2.1    -o CMakeFiles/cmTC_1742c.dir/testCCompiler.c.o   -c /home/ben/Desktop/HRPG/HRPG-Main/HRPG-Main/build/CMakeFiles/CMakeTmp/testCCompiler.c
-Linking C executable cmTC_1742c
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1742c.dir/link.txt --verbose=1
-/bin/arm-none-eabi-gcc-9.2.1      CMakeFiles/cmTC_1742c.dir/testCCompiler.c.o  -o cmTC_1742c 
-/usr/lib/gcc/arm-none-eabi/9.2.1/../../../arm-none-eabi/bin/ld: /usr/lib/gcc/arm-none-eabi/9.2.1/../../../arm-none-eabi/lib/libc.a(lib_a-exit.o): in function `exit':
-/build/newlib-CVVEyx/newlib-3.3.0/build/arm-none-eabi/newlib/libc/stdlib/../../../../../newlib/libc/stdlib/exit.c:64: undefined reference to `_exit'
-collect2: error: ld returned 1 exit status
-make[1]: *** [CMakeFiles/cmTC_1742c.dir/build.make:87: cmTC_1742c] Error 1
-make[1]: Leaving directory '/home/ben/Desktop/HRPG/HRPG-Main/HRPG-Main/build/CMakeFiles/CMakeTmp'
-make: *** [Makefile:121: cmTC_1742c/fast] Error 2
-
-
-
-Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
-Compiler: /bin/arm-none-eabi-gcc-9.2.1 
-Build flags: 
-Id flags:  
-
-The output was:
-1
-/usr/lib/gcc/arm-none-eabi/9.2.1/../../../arm-none-eabi/bin/ld: /usr/lib/gcc/arm-none-eabi/9.2.1/../../../arm-none-eabi/lib/libc.a(lib_a-exit.o): in function `exit':
-/build/newlib-CVVEyx/newlib-3.3.0/build/arm-none-eabi/newlib/libc/stdlib/../../../../../newlib/libc/stdlib/exit.c:64: undefined reference to `_exit'
-collect2: error: ld returned 1 exit status
-
-
-Determining if the C compiler works failed with the following output:
-Change Dir: /home/ben/Desktop/HRPG/HRPG-Main/HRPG-Main/build/CMakeFiles/CMakeTmp
-
-Run Build Command(s):/usr/bin/make cmTC_c2a64/fast && /usr/bin/make -f CMakeFiles/cmTC_c2a64.dir/build.make CMakeFiles/cmTC_c2a64.dir/build
-make[1]: Entering directory '/home/ben/Desktop/HRPG/HRPG-Main/HRPG-Main/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_c2a64.dir/testCCompiler.c.o
-/bin/arm-none-eabi-gcc-9.2.1    -o CMakeFiles/cmTC_c2a64.dir/testCCompiler.c.o   -c /home/ben/Desktop/HRPG/HRPG-Main/HRPG-Main/build/CMakeFiles/CMakeTmp/testCCompiler.c
-Linking C executable cmTC_c2a64
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c2a64.dir/link.txt --verbose=1
-/bin/arm-none-eabi-gcc-9.2.1      CMakeFiles/cmTC_c2a64.dir/testCCompiler.c.o  -o cmTC_c2a64 
-/usr/lib/gcc/arm-none-eabi/9.2.1/../../../arm-none-eabi/bin/ld: /usr/lib/gcc/arm-none-eabi/9.2.1/../../../arm-none-eabi/lib/libc.a(lib_a-exit.o): in function `exit':
-/build/newlib-CVVEyx/newlib-3.3.0/build/arm-none-eabi/newlib/libc/stdlib/../../../../../newlib/libc/stdlib/exit.c:64: undefined reference to `_exit'
-collect2: error: ld returned 1 exit status
-make[1]: *** [CMakeFiles/cmTC_c2a64.dir/build.make:87: cmTC_c2a64] Error 1
-make[1]: Leaving directory '/home/ben/Desktop/HRPG/HRPG-Main/HRPG-Main/build/CMakeFiles/CMakeTmp'
-make: *** [Makefile:121: cmTC_c2a64/fast] Error 2
-
 
 
