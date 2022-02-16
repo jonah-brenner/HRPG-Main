@@ -6,8 +6,8 @@
 
 #define PIN_MISO 4
 #define PIN_CS   5
-#define PIN_SCK  6
-#define PIN_MOSI 7
+#define PIN_SCK  2
+#define PIN_MOSI 3
 
 #define SPI_PORT spi0
 #define READ_BIT 0x80
