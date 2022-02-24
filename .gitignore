@@ -1,2 +1,4 @@
 build/
 CMakeLists.txt
+
+mcp3008_serial/CMakeLists.txt

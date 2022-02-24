@@ -24,13 +24,6 @@ static inline void cs_deselect() {
     asm volatile("nop \n nop \n nop");
 }
 
-// void mcp0Reset() {
-//   cs_select();
-//   uint8_t buf[] = {0b01000000, 0x00, 0b00000000}; //Last bit in address is R/W; 0 means write. Assigning all pins as outputs here
-//   spi_write_blocking(SPI_PORT, buf, 3);
-//   cs_deselect();
-// }
-
 uint16_t mcp0Read(uint adc_chan) {
   uint8_t writebuf[] = {0x01, 0b10000000, 0x00};
   writebuf[1] |= adc_chan << 4;
@@ -46,9 +39,7 @@ uint16_t mcp0Read(uint adc_chan) {
 
 int main() {
     stdio_init_all();
-
-    printf("Hello, MPU9250! Reading raw data from registers via SPI...\n");
-
+    
     // This example will use SPI0 at 0.5MHz.
     spi_init(SPI_PORT, 500 * 1000);
     gpio_set_function(PIN_MISO, GPIO_FUNC_SPI);
