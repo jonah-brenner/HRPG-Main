@@ -15,3 +15,4 @@ set(CMAKE_CXX_STANDARD 17)
 pico_sdk_init()
 
 add_subdirectory("mcp3008_serial")
+add_subdirectory("ADS131M02_serial")
