@@ -3,66 +3,116 @@
 #include "pico/stdlib.h"
 #include "pico/binary_info.h"
 #include "hardware/spi.h"
+#include "hardware/pio.h"
 #include "clock.pio.h"
 
-#define PIN_MISO 4
-#define PIN_CS   5
-#define PIN_SCK  2
-#define PIN_MOSI 3
+#define PIN_MISO   4
+#define PIN_CS_MCP 5
+#define PIN_SCK    2
+#define PIN_MOSI   3
+#define PIN_CS_ADS 6
+#define PIN_ADS_CLOCK 17
 
 #define SPI_PORT spi0
 #define READ_BIT 0x80
 
-static inline void cs_select() {
-    asm volatile("nop \n nop \n nop");
-    gpio_put(PIN_CS, 0);  // Active low
-    asm volatile("nop \n nop \n nop");
+#define MODE_REG_ADR 0x2
+
+
+uint16_t ads_read(uint adc_chan) {
+    uint16_t writebuf[] = {0x00, 0x00, 0x00, 0x00};
+    uint16_t readbuf[] = {0x00, 0x00, 0x00, 0x00};
+
+    gpio_put(PIN_CS_ADS, 0);
+    spi_write16_read16_blocking(SPI_PORT, writebuf, readbuf, 4);
+    gpio_put(PIN_CS_ADS, 1);
+
+    return readbuf[1];
 }
 
-static inline void cs_deselect() {
-    asm volatile("nop \n nop \n nop");
-    gpio_put(PIN_CS, 1);
-    asm volatile("nop \n nop \n nop");
+uint16_t ads_read_reg(uint16_t reg_address) {
+    uint16_t writebuf[] = {0b1010000000000000, 0x00, 0x00, 0x00};
+    writebuf[0] = writebuf[0] | reg_address << 7;
+
+    uint16_t readbuf[] = {0x00, 0x00, 0x00, 0x00};
+
+    gpio_put(PIN_CS_ADS, 0);
+    spi_write16_read16_blocking(SPI_PORT, writebuf, readbuf, 4);
+    gpio_put(PIN_CS_ADS, 1);
+
+    gpio_put(PIN_CS_ADS, 0);
+    spi_write16_read16_blocking(SPI_PORT, writebuf, readbuf, 4);
+    gpio_put(PIN_CS_ADS, 1);
+
+    return readbuf[0];
 }
 
-uint16_t mcp0Read(uint adc_chan) {
-  uint8_t writebuf[] = {0x01, 0b10000000, 0x00};
-  writebuf[1] |= adc_chan << 4;
-  uint8_t readbuf[] = {0x00, 0x00, 0x00};
+uint16_t ads_write_reg(uint16_t reg_address, uint16_t reg_data) {
+    uint16_t writebuf[] = {0b0110000000000000, reg_data, 0x00, 0x00};
+    writebuf[0] = writebuf[0] | reg_address << 7;
 
-  cs_select();
-  spi_write_read_blocking(SPI_PORT, writebuf, readbuf, 3);
-  cs_deselect();
+    uint16_t readbuf[] = {0x00, 0x00, 0x00, 0x00};
 
-  readbuf[1] &= 0b00000011;
-  return (readbuf[1]<<8) | readbuf[2];
+    gpio_put(PIN_CS_ADS, 0);
+    spi_write16_read16_blocking(SPI_PORT, writebuf, readbuf, 4);
+    gpio_put(PIN_CS_ADS, 1);
+
+    return readbuf[0];
+}
+
+void ads_reset() {
+    uint16_t writebuf[] = {0b0000000000010001, 0x00, 0x00, 0x00};
+    uint16_t readbuf[] = {0x00, 0x00, 0x00, 0x00};
+
+    gpio_put(PIN_CS_ADS, 0);
+    spi_write16_read16_blocking(SPI_PORT, writebuf, readbuf, 4);
+    gpio_put(PIN_CS_ADS, 1);
 }
 
 int main() {
     stdio_init_all();
     
     // This example will use SPI0 at 0.5MHz.
-    spi_init(SPI_PORT, 500 * 1000);
+    spi_init(SPI_PORT, 1000 * 1000);
+    spi_set_format(SPI_PORT, 16, 0, 1, SPI_MSB_FIRST);
     gpio_set_function(PIN_MISO, GPIO_FUNC_SPI);
     gpio_set_function(PIN_SCK, GPIO_FUNC_SPI);
     gpio_set_function(PIN_MOSI, GPIO_FUNC_SPI);
 
-
     // Chip select is active-low, so we'll initialise it to a driven-high state
-    gpio_init(PIN_CS);
-    gpio_set_dir(PIN_CS, GPIO_OUT);
-    gpio_put(PIN_CS, 1);
+    gpio_init(PIN_CS_MCP);
+    gpio_set_dir(PIN_CS_MCP, GPIO_OUT);
+    gpio_put(PIN_CS_MCP, 1);
+
+    gpio_init(PIN_CS_ADS);
+    gpio_set_dir(PIN_CS_ADS, GPIO_OUT);
+    gpio_put(PIN_CS_ADS, 1);
+
+    PIO pio = pio0;
+    int sm = 0;
+    uint offset = pio_add_program(pio, &clock_program);
+
+    clock_program_init(pio, sm, offset, PIN_ADS_CLOCK, 8192 * 1000);
 
     uint16_t sample;
+    uint16_t reg;
+
+    sleep_ms(1);
+
+    ads_reset();
+
+    sleep_ms(1);
+
+    ads_write_reg(MODE_REG_ADR, 0b0000010000010000); //0x410
 
     while (1) {
-        sample = mcp0Read(0);
+        //sample = ads_read(0);
 
-        float voltage = (sample / 1024.0) * 3.3;
+        //printf("Voltage: %u\n", sample);
 
-        printf("Voltage: %f\n", voltage);
+        reg = ads_read_reg(MODE_REG_ADR);
 
-        sleep_ms(100);
+        printf("MODE Register Contents: %x\n", reg);
     }
 
     return 0;

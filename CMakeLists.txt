@@ -16,3 +16,4 @@ pico_sdk_init()
 
 add_subdirectory("mcp3008_serial")
 add_subdirectory("ADS131M02_serial")
+add_subdirectory("relay_test")
