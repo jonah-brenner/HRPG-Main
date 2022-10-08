@@ -14,6 +14,6 @@ set(CMAKE_CXX_STANDARD 17)
 # Initialize the SDK
 pico_sdk_init()
 
-add_subdirectory("mcp3008_serial")
+add_subdirectory("pressure_test_wired")
 add_subdirectory("ADS131M02_serial")
 add_subdirectory("relay_test")
